@@ -1,0 +1,70 @@
+.hdg-1,
+.hdg-2 {
+    -unity-font-style: bold;
+}
+
+.hdg-1 {
+    font-size: 20px;
+}
+
+.hdg-2 {
+    font-size: 16px;
+}
+
+.paragraph {
+    font-size: 16px;
+}
+
+.btn {
+    font-size: 14px;
+}
+
+/**************************************************/
+
+.mt0 {
+    margin-top: 0;
+}
+
+.mb6 {
+    margin-bottom: 6px;
+}
+
+/**************************************************/
+
+.container {
+    padding: 16px 25px 0;
+}
+
+.lead {
+    margin-top: 20px;
+}
+
+.lst {
+    margin-top: 19px;
+}
+
+.notice {
+    margin-top: 17px;
+}
+
+.form__group {
+    margin-top: 19px;
+}
+
+.form__group .hdg-2 {
+    margin-bottom: 6px;
+}
+
+.form__lead {
+    margin-bottom: 6px;
+    display: none;
+}
+
+.form__notice {
+    margin-top: 6px;
+    opacity: .8;
+}
+
+.form__btn {
+    margin-top: 20px;
+}

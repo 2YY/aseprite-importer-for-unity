@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:engine="UnityEngine.UIElements"
+  xmlns:editor="UnityEditor.UIElements"
+  xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:VisualElement class="container">
+    <engine:TextElement class="hdg-1" text="Aseprite Importer" />
+    <engine:TextElement class="Paragraph lead" text="Be more efficiency work of importing Aseprite sprite sheet." />
+
+    <engine:VisualElement class="lst">
+      <engine:TextElement class="Paragraph-sub" text="1. Auto Slicing (Based on exported JSON info from Aseprite)" />
+      <engine:TextElement class="Paragraph-sub" text="2. Bulk Applying Pivot Info to Each Slice (All you have to do is input your pivot coords to below form)" />
+      <engine:TextElement class="Paragraph-sub" text="3. Animation Settings (Generate/Update animator controller and animation clips. Each animation Clip is generated from every Aseprite tags.)" />
+    </engine:VisualElement>
+
+    <engine:TextElement class="Paragraph-sub notice" text="* When export from Aseprite, please set JSON Data type to 'Array' (not 'Hash')" />
+
+    <engine:VisualElement class="form">
+      <engine:VisualElement class="form__group">
+        <engine:TextElement class="hdg-2" text="Select Assets You Would Like to Process" />
+        <engine:TextElement class="paragraph-sub form__notice mt0 mb6" text="*NOTE: This tool assume first tag defined in Aseprite is 'Idle' animation. Therefore, generated AnimatorController default state will be AnimationClip generated from first tag." />
+        <editor:ObjectField name="field-aseprite" label="Aseprite File" allow-scene-object="false" />
+        <editor:ObjectField name="field-json" label="JSON File" allow-scene-object="false" />
+      </engine:VisualElement>
+      <engine:VisualElement class="form__group">
+        <engine:TextElement class="hdg-2" text="Input Pivot Coords You Would Like to Apply Each Slice" />
+        <engine:TextElement name="label-frame-size" class="Paragraph-sub form__lead" />
+        <editor:Vector2IntField name="field-pivot" />
+        <engine:TextElement class="paragraph-sub form__notice" text="*NOTE: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
+      </engine:VisualElement>
+      <engine:Button name="button-apply" class="btn form__btn" text="Apply" />
+    </engine:VisualElement>
+  </engine:VisualElement>
+
+</engine:UXML>
