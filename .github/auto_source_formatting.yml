@@ -1,0 +1,48 @@
+name: Auto Source Formatting
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      if: !github.event.pull_request
+
+    - uses: actions/checkout@v2
+      if: github.event.pull_request
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Install dotnet/format
+      run: dotnet tool install -g dotnet-format
+
+    - name: Code Formatting
+      run: dotnet-format --folder --include ./**/*.cs --exclude ./Packages/AsepriteImporter/Editor/**/*.cs
+
+    - name: Configure Git Commit User and Pulling Strategy
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git config pull.rebase false
+
+    - name: Commit & Push
+      run: |
+        git add -A
+        git commit --allow-empty -m ":art: Apply code formatting"
+        git pull
+        git push
+
