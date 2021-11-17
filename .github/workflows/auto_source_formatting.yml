@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      if: !github.event.pull_request
+      if: github.event.push
 
     - uses: actions/checkout@v2
       if: github.event.pull_request
