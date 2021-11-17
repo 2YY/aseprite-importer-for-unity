@@ -15,10 +15,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      if: github.event.push
+      if: github.event_name == 'push'
 
     - uses: actions/checkout@v2
-      if: github.event.pull_request
+      if: github.event_name == 'pull_request'
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
