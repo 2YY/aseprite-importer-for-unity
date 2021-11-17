@@ -42,7 +42,7 @@ jobs:
     - name: Commit & Push
       run: |
         git add -A
-        git commit --allow-empty -m ":art: Apply code formatting"
+        git diff-index --quiet HEAD || git commit -m ":art: Apply code formatting"
         git pull
         git push
 
