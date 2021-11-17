@@ -39,7 +39,6 @@ namespace Editor
 
             ImportUxml(root);
             ImportUss(root);
-            ImportPivotConfig();
 
             CurateElements(root);
             InitElements();
@@ -67,9 +66,6 @@ namespace Editor
             StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(_pathUss);
             root.styleSheets.Add(styleSheet);
         }
-
-        // TODO: 要る？
-        private void ImportPivotConfig() { }
 
         /**
 		 * <summary>Curate UI elements from root visual element.</summary>
