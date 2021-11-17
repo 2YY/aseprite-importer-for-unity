@@ -1,0 +1,22 @@
+{
+  "name": "net.niwaiwai.aseprite_importer",
+  "version": "0.0.0",
+  "description": "Generate Animator Controller and Animation Clips from your Aseprite file.",
+  "displayName": "Aseprite Importer",
+  "unity": "2020.3",
+  "author": {
+    "name": "2YY",
+    "email": "hkgeuobmaoakneotpuhtesnotekheo@gmail.com",
+    "url": "https://github.com/2YY"
+  },
+  "changelogUrl": "https://github.com/2YY/aseprite-importer-for-unity/releases",
+  "dependencies": {},
+  "documentationUrl": "https://github.com/2YY/aseprite-importer-for-unity/wiki",
+  "hideInEditor": true,
+  "keywords": ["Aseprite"],
+  "license": "See License.md file",
+  "licensesUrl": "",
+  "samples": [],
+  "unityRelease": "22f1"
+}
+
