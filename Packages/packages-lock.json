@@ -178,6 +178,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "net.niwaiwai.aseprite_importer": {
+      "version": "file:net.niwaiwai.aseprite_importer",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
