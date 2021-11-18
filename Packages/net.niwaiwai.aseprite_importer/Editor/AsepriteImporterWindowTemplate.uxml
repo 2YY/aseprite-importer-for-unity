@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:engine="UnityEngine.UIElements"
   xmlns:editor="UnityEditor.UIElements"
-  xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+  xsi:noNamespaceSchemaLocation="UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement class="container">
     <engine:TextElement class="hdg-1" text="Aseprite Importer" />
