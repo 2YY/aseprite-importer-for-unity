@@ -43,8 +43,8 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldSlicedTextureSpritesAmountSameAsAmountThatDefinedInJson() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 
 			var sprites = (object[])_getSpritesFromAssetPathMethod.Invoke(_asepriteImporter, new object[] { _texturePath, data.meta.frameTags });
 			Assert.AreEqual(12, sprites.Length);
@@ -52,8 +52,8 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldSlicedTextureSpritesOrderSameAsOrderThatDefinedInJson() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 			
 			var sprites = (Sprite[])_getSpritesFromAssetPathMethod.Invoke(_asepriteImporter, new object[] { _texturePath, data.meta.frameTags });
 
@@ -70,8 +70,8 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldSlicedTextureSpritesDimensionSameAsDimensionThatDefinedInJson() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 			
 			var sprites = (Sprite[])_getSpritesFromAssetPathMethod.Invoke(_asepriteImporter, new object[] { _texturePath, data.meta.frameTags });
 
@@ -89,8 +89,8 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldAnimationClipGeneratedSameNameAndDirectoryAsTextureByEachTagsDefinedInJson() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 
 			Assert.NotNull(AssetDatabase.LoadAssetAtPath<AnimationClip>(_animationClipPath1));
 			Assert.NotNull(AssetDatabase.LoadAssetAtPath<AnimationClip>(_animationClipPath2));
@@ -99,14 +99,14 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldGuidWillNotUpdatedWhenOverwriteAnimationClip() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 
 			var guid1 = AssetDatabase.AssetPathToGUID(_animationClipPath1);
 			var guid2 = AssetDatabase.AssetPathToGUID(_animationClipPath2);
 			var guid3 = AssetDatabase.AssetPathToGUID(_animationClipPath3);
 			
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 
 			Assert.AreEqual(guid1, AssetDatabase.AssetPathToGUID(_animationClipPath1));
 			Assert.AreEqual(guid2, AssetDatabase.AssetPathToGUID(_animationClipPath2));
@@ -115,29 +115,20 @@ namespace Tests.Editor {
 
 		[Test]
 		public void ShouldAnimatorControllerGeneratedSameNameAndDirectoryAsTexture() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 
 			Assert.NotNull(AssetDatabase.LoadAssetAtPath<AnimatorController>(_animatorControllerPath));
 		}
 
 		[Test]
 		public void ShouldGuidWillNotUpdatedWhenOverwriteAnimatorController() {
-			var data = GetData(_jsonPath);
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			var data = EditorTestUtil.GetData(_jsonPath);
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 			var guid = AssetDatabase.AssetPathToGUID(_animatorControllerPath);
 			
-			_asepriteImporter.Import(GetTexture(_texturePath), data, new Vector2Int(0, 0));
+			_asepriteImporter.Import(EditorTestUtil.GetTexture(_texturePath), data, new Vector2Int(0, 0));
 			Assert.AreEqual(guid, AssetDatabase.AssetPathToGUID(_animatorControllerPath));
-		}
-
-		private Texture2D GetTexture(string path) {
-			return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
-		}
-
-		private AsepriteSpriteData GetData(string path) {
-			var json = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
-			return JsonUtility.FromJson<AsepriteSpriteData>(json.text);
 		}
 	}
 }

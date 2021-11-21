@@ -17,8 +17,8 @@ namespace Editor {
 		private string _pathUss = "Packages/net.niwaiwai.aseprite_importer/Editor/AsepriteImporterWindowStyle.uss";
 		private Texture2D _bindingTexture;
 		private TextAsset _bindingJson;
-		private Vector2Int _bindingPivot;
-		private AsepriteSpriteData _bindingJsonData;
+		private Vector2Int? _bindingPivot = null;
+		private AsepriteSpriteData? _bindingJsonData = null;
 		private ObjectField _fieldTexture;
 		private ObjectField _fieldJson;
 		private Vector2IntField _fieldPivot;
@@ -96,7 +96,7 @@ namespace Editor {
 		 * </summary>
 		 */
 		private void ValidateUserInput() {
-			if (IsValid()) {
+			if (IsValid(_bindingTexture, _bindingJsonData, _bindingPivot)) {
 				_buttonApply.SetEnabled(true);
 			}
 			else {
@@ -108,16 +108,15 @@ namespace Editor {
 		 * <summary>Validate user inputted values and return the result.</summary>
 		 * <returns>If all values is valid, return true. Unless, return false.</returns>
 		 */
-		private bool IsValid() {
-			bool isExistsSpriteAssets = _bindingTexture != null && _bindingJson != null;
-			if (!isExistsSpriteAssets) {
+		private bool IsValid(Texture2D texture, AsepriteSpriteData? data, Vector2Int? pivot) {
+			if (texture == null || data == null || pivot == null) {
 				return false;
 			}
 
-			bool isPivotXGreaterEqualThanFrameX = _bindingPivot.x >= _bindingJsonData.frames[0].frame.x;
-			bool isPivotYGreaterEqualThanFrameY = _bindingPivot.y >= _bindingJsonData.frames[0].frame.y;
-			bool isPivotXLessThanFrameW = _bindingJsonData.frames[0].frame.w > _bindingPivot.x;
-			bool isPivotYLessThanFrameH = _bindingJsonData.frames[0].frame.h > _bindingPivot.y;
+			bool isPivotXGreaterEqualThanFrameX = pivot.Value.x >= data.Value.frames[0].frame.x;
+			bool isPivotYGreaterEqualThanFrameY = pivot.Value.y >= data.Value.frames[0].frame.y;
+			bool isPivotXLessThanFrameW = data.Value.frames[0].frame.w > pivot.Value.x;
+			bool isPivotYLessThanFrameH = data.Value.frames[0].frame.h > pivot.Value.y;
 			bool isPivotInTheFrameRect =
 				isPivotXGreaterEqualThanFrameX &&
 				isPivotYGreaterEqualThanFrameY &&
@@ -153,7 +152,7 @@ namespace Editor {
 
 				_bindingJsonData = JsonUtility.FromJson<AsepriteSpriteData>(val.text);
 
-				AsepriteSpriteFrameRectInfo frameRect = _bindingJsonData.frames[0].frame; // NOTE: Each frames size is same.
+				AsepriteSpriteFrameRectInfo frameRect = _bindingJsonData.Value.frames[0].frame; // NOTE: Each frames size is same.
 				_textFrameSize.text = "Frame Size = (" + frameRect.w + ", " + frameRect.h + ")";
 				_textFrameSize.style.display = DisplayStyle.Flex;
 
@@ -185,7 +184,7 @@ namespace Editor {
 			_fieldTexture.SetValueWithoutNotify(null);
 			_fieldJson.SetValueWithoutNotify(null);
 
-			_asepriteImporter.Import(_bindingTexture, _bindingJsonData, _bindingPivot);
+			_asepriteImporter.Import(_bindingTexture, _bindingJsonData.Value, _bindingPivot.Value);
 		}
 	}
 }
