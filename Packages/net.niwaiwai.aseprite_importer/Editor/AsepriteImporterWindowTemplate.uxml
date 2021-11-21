@@ -21,7 +21,7 @@
       <engine:VisualElement class="form__group">
         <engine:TextElement class="hdg-2" text="Select Assets You Would Like to Process" />
         <engine:TextElement class="paragraph-sub form__notice mt0 mb6" text="*NOTE: This tool assume first tag defined in Aseprite is 'Idle' animation. Therefore, generated AnimatorController default state will be AnimationClip generated from first tag." />
-        <editor:ObjectField name="field-aseprite" label="Aseprite File" allow-scene-object="false" />
+        <editor:ObjectField name="field-texture" label="Aseprite File" allow-scene-object="false" />
         <editor:ObjectField name="field-json" label="JSON File" allow-scene-object="false" />
       </engine:VisualElement>
       <engine:VisualElement class="form__group">

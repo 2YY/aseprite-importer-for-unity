@@ -239,13 +239,11 @@ $RECYCLE.BIN/
 
 /UIElementsSchema/
 
-AsepriteImporterWindowSpec.controller
-AsepriteImporterWindowSpec.controller.meta
-AsepriteImporterWindowSpec__Anim1.anim
-AsepriteImporterWindowSpec__Anim1.anim.meta
-AsepriteImporterWindowSpec__Anim2.anim
-AsepriteImporterWindowSpec__Anim2.anim.meta
-AsepriteImporterWindowSpec__Anim2.anim
-AsepriteImporterWindowSpec__Anim2.anim.meta
-AsepriteImporterWindowSpec__Anim3.anim
-AsepriteImporterWindowSpec__Anim3.anim.meta
+AsepriteImporterSpec.controller
+AsepriteImporterSpec.controller.meta
+AsepriteImporterSpec__Anim1.anim
+AsepriteImporterSpec__Anim1.anim.meta
+AsepriteImporterSpec__Anim2.anim
+AsepriteImporterSpec__Anim2.anim.meta
+AsepriteImporterSpec__Anim3.anim
+AsepriteImporterSpec__Anim3.anim.meta
