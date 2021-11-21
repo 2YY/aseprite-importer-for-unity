@@ -3,7 +3,7 @@ using System;
 namespace Editor
 {
     [Serializable]
-    public struct AsepriteSpriteInfo
+    public struct AsepriteSpriteData
     {
         public AsepriteSpriteFrameInfo[] frames;
         public AsepriteSpriteMetaInfo meta;
