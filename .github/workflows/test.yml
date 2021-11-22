@@ -25,7 +25,11 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Load License File from Secret
-      run: echo "${{ secrets.UNITY_VERSION_2020_LICENSE }}" > unity_license.x.ulf
+      run: |
+        echo -n "$ULF" > unity.ulf
+        /opt/Unity/Editor/Unity -nographics -batchmode -quit -logFile -manualLicenseFile ./unity.ulf || exit 0
+      with:
+        ULF: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
 
     - name: Authorize Unity
       run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile decoded_unity_license.x.ulf || exit 0
