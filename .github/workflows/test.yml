@@ -27,9 +27,6 @@ jobs:
     - name: Load License File from Secret
       run: echo "${{ secrets.UNITY_VERSION_2020_LICENSE }}" > unity_license.x.ulf
 
-    - name: Decode License File
-      run: base64 -d unity_license.x.ulf decoded_unity_license.x.ulf
-
     - name: Authorize Unity
       run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile decoded_unity_license.x.ulf || exit 0
 
