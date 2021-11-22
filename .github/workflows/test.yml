@@ -1,0 +1,44 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: unityci/editor:ubuntu-2020.3.22f1-webgl-0.15.0
+
+    steps:
+    - uses: actions/checkout@v2
+      if: github.event_name == 'push'
+
+    - uses: actions/checkout@v2
+      if: github.event_name == 'pull_request'
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Load License File from Secret
+      run: echo "${{ secrets.UNITY_VERSION_2020_LICENSE }}" > unity_license.x.ulf
+
+    - name: Decode License File
+      run: base64 -d unity_license.x.ulf decoded_unity_license.x.ulf
+
+    - name: Authorize Unity
+      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile decoded_unity_license.x.ulf || exit 0
+
+    - name: Build
+      run: /opt/unity/Editor/Unity -projectPath . -batchmode -quit -logFile -nographics -executeMethod Editor.CiBuild.CiBuild.BuildForStaging
+
+    - name: Run Edit Mode Test
+      run: /opt/unity/Editor/Unity -runTests -projectPath . -batchmode -nographics -testPlatform editmode -testResults ./test-results/results.xml -logFile || exit 0
+
+    - name: Check Edit Mode Test Reslult
+      run: grep 'failed="0"' ./test-results/results.xml
+
