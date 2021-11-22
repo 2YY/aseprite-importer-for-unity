@@ -10,6 +10,8 @@ on:
     
 env:
   ULF: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
+  UNITY_USERNAME: ${{ secrets.UNITY_USERNAME }}
+  UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
 jobs:
   build:
@@ -33,7 +35,7 @@ jobs:
         /opt/Unity/Editor/Unity -nographics -batchmode -quit -logFile -manualLicenseFile ./unity.ulf || exit 0
 
     - name: Authorize Unity
-      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile decoded_unity_license.x.ulf || exit 0
+      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile decoded_unity_license.x.ulf -username "$UNITY_USERNAME" -password "$UNITY_PASSWORD" || exit 0
 
     - name: Build
       run: /opt/unity/Editor/Unity -projectPath . -batchmode -quit -logFile -nographics -executeMethod Editor.CiBuild.CiBuild.BuildForStaging
