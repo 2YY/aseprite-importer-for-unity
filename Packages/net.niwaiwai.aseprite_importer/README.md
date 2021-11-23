@@ -1,6 +1,6 @@
 # Aseprite Importer for Unity
 
-[![Test](https://github.com/2YY/aseprite-importer-for-unity/actions/workflows/test.yml/badge.svg)](https://github.com/2YY/aseprite-importer-for-unity/actions/workflows/test.yml)
+[![Main](https://github.com/2YY/aseprite-importer-for-unity/actions/workflows/main.yml/badge.svg)](https://github.com/2YY/aseprite-importer-for-unity/actions/workflows/main.yml)
 
 ## Usage
 
