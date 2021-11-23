@@ -17,8 +17,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container:
-      image: unityci/editor:ubuntu-2020.3.22f1-webgl-0.15.0
 
     steps:
     - uses: actions/checkout@v2
