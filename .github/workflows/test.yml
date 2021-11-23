@@ -29,16 +29,12 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Load License File from Secret
+    - name: Create Unity License File
       run: |
-        echo -n "$ULF" > unity.ulf
-        /opt/Unity/Editor/Unity -nographics -batchmode -quit -logFile -manualLicenseFile ./unity.ulf || exit 0
+        /opt/unity/Editor/Unity -quit -batchmode -nographics -logFile /dev/stdout -username "$UNITY_USERNAME" -password "$UNITY_PASSWORD"
 
-    - name: Authorize Unity
-      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile ./unityf.ulf || exit 0
-
-    - name: Build
-      run: /opt/unity/Editor/Unity -projectPath . -batchmode -quit -logFile -nographics -executeMethod Editor.CiBuild.CiBuild.BuildForStaging -manualLicenseFile ./unity.ulf
+    - name: Activate Unity License
+      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -manualLicenseFile Unity_v2020.x.ulf
 
     - name: Run Edit Mode Test
       run: /opt/unity/Editor/Unity -runTests -projectPath . -batchmode -nographics -testPlatform editmode -testResults ./test-results/results.xml -logFile || exit 0
