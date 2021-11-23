@@ -42,7 +42,7 @@ jobs:
     - name: Test
       uses: game-ci/unity-test-runner@v2
       env:
-        UNITY_LICENSE: ${{ secrets.UNITY_2020_LICENSE }}
+        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
 
