@@ -58,7 +58,7 @@ jobs:
     - name: Commit & Push
       run: |
         git add -A
-        git diff-index --quiet HEAD || git commit -m ":art: Apply code formatting"
+        git diff-index --quiet HEAD || git commit -m ":pencil2: Update README.md"
         git pull
         git push
   test_and_build:
