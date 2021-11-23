@@ -19,15 +19,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      if: github.event_name == 'push'
-
-    - uses: actions/checkout@v2
-      if: github.event_name == 'pull_request'
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        lfs: true
 
-    - uses: actions/cache@v2
+    - name: Cache
+      uses: actions/cache@v2
       with:
         path: Library
         key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -48,7 +46,8 @@ jobs:
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/upload-artifact@v2
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
       with:
         name: Build
         path: build
