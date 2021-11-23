@@ -36,6 +36,14 @@ jobs:
         git diff-index --quiet HEAD || git commit -m ":art: Apply code formatting"
         git pull
         git push
+  update_root_readme:
+    name: Update Root README
+    runs-on: ubuntu-latest
+    steps:
+    - name: Remove Root README
+      run: rm -f README.md
+    - name: Copy Package README to Root
+      run: cp Packages/net.niwaiwai.aseprite_importer/README.md README.md
   test_and_build:
     name: Test and Build
     runs-on: ubuntu-latest
