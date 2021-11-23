@@ -40,6 +40,12 @@ jobs:
     name: Update Root README
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+      if: github.event_name == 'push'
+    - uses: actions/checkout@v2
+      if: github.event_name == 'pull_request'
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: Remove Root README
       run: rm -f README.md
     - name: Copy Package README to Root
