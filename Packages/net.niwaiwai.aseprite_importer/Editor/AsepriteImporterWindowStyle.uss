@@ -10,7 +10,7 @@
 .btn { font-size: 14px; }
 
 .header__paragraph-1,
-.header__paragraph-3 { margin-top: 6px; }
+.header__paragraph-4 { margin-top: 6px; }
 
 .form__group { margin-top: 24px; }
 .form__paragraph-1,

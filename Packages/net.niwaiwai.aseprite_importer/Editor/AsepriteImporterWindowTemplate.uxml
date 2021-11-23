@@ -10,8 +10,9 @@
       <engine:TextElement class="header__hdg hdg-2" text="Prerequisites" />
       <engine:TextElement class="header__paragraph-1 paragraph" text="To use this tool, please make sure you have your PNG file and JSON file that exported by Aseprite. And also need import them into this Unity project as asset." />
       <engine:TextElement class="header__paragraph-2 paragraph" text="Note: This tool only support 'Array' type as JSON data type in Aseprite export sprite sheet settings. Not working correctly with 'Hash' type." />
-      <engine:TextElement class="header__paragraph-3 paragraph" text="See wiki to learn more about this tool." />
-      <engine:TextElement class="header__paragraph-4 paragraph" text="https://github.com/2YY/aseprite-importer-for-unity/wiki" />
+      <engine:TextElement class="header__paragraph-3 paragraph" text="Note: Please make sure your imported Texture type is 'Sprite (2D and UI)' and Sprite Mode is 'Multiple' to working correctly this tool." />
+      <engine:TextElement class="header__paragraph-4 paragraph" text="See wiki to learn more about this tool." />
+      <engine:TextElement class="header__paragraph-5 paragraph" text="https://github.com/2YY/aseprite-importer-for-unity/wiki" />
     </engine:VisualElement>
     <engine:VisualElement class="form">
       <engine:VisualElement class="form__group">
