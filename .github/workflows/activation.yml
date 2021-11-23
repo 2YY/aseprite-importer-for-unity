@@ -1,3 +1,5 @@
+# See Detail: https://game.ci/docs/github/activation
+
 name: Acquire Unity Activation File
 on:
   workflow_dispatch: {}
