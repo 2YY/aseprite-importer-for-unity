@@ -29,6 +29,13 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
+    - uses: actions/cache@v2
+      with:
+        path: Library
+        key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+        restore-keys: |
+          Library-
+
     - name: Create Unity License File
       run: |
         /opt/unity/Editor/Unity -quit -batchmode -nographics -logFile /dev/stdout -username "$UNITY_USERNAME" -password "$UNITY_PASSWORD"
