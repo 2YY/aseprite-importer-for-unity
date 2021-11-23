@@ -18,7 +18,7 @@
       <engine:VisualElement class="form__group">
         <engine:TextElement class="form__hdg hdg-2" text="Import setting 1: Select Assets" />
         <engine:TextElement class="form__paragraph-1 paragraph" text="Drag your assets that you want to import Aseprite data into below input fields to select." />
-        <editor:ObjectField class="form__field-1" name="field-texture" label="Aseprite File" allow-scene-object="false" />
+        <editor:ObjectField class="form__field-1" name="field-texture" label="Texture File" allow-scene-object="false" />
         <editor:ObjectField class="form__field-2" name="field-json" label="JSON File" allow-scene-object="false" />
       </engine:VisualElement>
       <engine:VisualElement class="form__group">
