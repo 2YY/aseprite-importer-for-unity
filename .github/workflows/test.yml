@@ -36,16 +36,21 @@ jobs:
         restore-keys: |
           Library-
 
-    - name: Create Unity License File
-      run: |
-        /opt/unity/Editor/Unity -quit -batchmode -nographics -logFile /dev/stdout -username "$UNITY_USERNAME" -password "$UNITY_PASSWORD"
+    - name: Build
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
+      with:
+        targetPlatform: WebGL
 
-    - name: Activate Unity License
-      run: /opt/unity/Editor/Unity -quit -batchmode -nographics -manualLicenseFile Unity_v2020.x.ulf
+    - name: Test
+      uses: game-ci/unity-test-runner@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Run Edit Mode Test
-      run: /opt/unity/Editor/Unity -runTests -projectPath . -batchmode -nographics -testPlatform editmode -testResults ./test-results/results.xml -logFile || exit 0
-
-    - name: Check Edit Mode Test Reslult
-      run: grep 'failed="0"' ./test-results/results.xml
-
+  - uses: actions/upload-artifact@v2
+      with:
+        name: Build
+        path: build
