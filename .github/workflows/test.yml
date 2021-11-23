@@ -8,11 +8,6 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
     
-env:
-  ULF: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
-  UNITY_USERNAME: ${{ secrets.UNITY_USERNAME }}
-  UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-
 jobs:
   build:
 
