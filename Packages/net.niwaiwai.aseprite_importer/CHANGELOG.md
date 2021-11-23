@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0] - 2021-11-23
+
+### Added
+
 - Texture slicing based on JSON data that exported from Aseprite.
 - Pivot configuring based on UI input.
 - Animator controller generating / overwriting.
 - Animation clip generating / overwriting. And also, associating them to animator controller.
-
-## [0.0.0] - 2021-0X-XX
-
-### Added
