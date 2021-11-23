@@ -1,5 +1,4 @@
 name: Main
-
 on:
   push:
     branches:
@@ -7,40 +6,59 @@ on:
       - develop
   pull_request:
     types: [ opened, synchronize, reopened ]
-
 jobs:
-  source_formatting:
+  code_formatting:
+    name: Code Formatting
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-      if: github.event_name == 'push'
-
-    - uses: actions/checkout@v2
-      if: github.event_name == 'pull_request'
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-
     - name: Install dotnet/format
       run: dotnet tool install -g dotnet-format
-
     - name: Code Formatting
       run: dotnet-format --folder --include ./Packages/net.niwaiwai.aseprite_importer/**/*.cs
-
     - name: Configure Git Commit User and Pulling Strategy
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
         git config pull.rebase false
-
     - name: Commit & Push
       run: |
         git add -A
         git diff-index --quiet HEAD || git commit -m ":art: Apply code formatting"
         git pull
         git push
+  test_and_build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        lfs: true
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: Library
+        key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+        restore-keys: |
+          Library-
+    - name: Test
+      uses: game-ci/unity-test-runner@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
+      with:
+        targetPlatform: WebGL
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build
+        path: build
