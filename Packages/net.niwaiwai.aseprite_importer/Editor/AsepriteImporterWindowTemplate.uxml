@@ -25,7 +25,8 @@
         <engine:TextElement class="form__hdg hdg-2" text="Import setting 2: Select Pivot Coords" />
         <engine:TextElement class="form__paragraph-2 paragraph" text="Select pivot coords that you want apply to sliced each frames in sprite sheet." />
         <editor:Vector2IntField class="form__field-3" name="field-pivot" />
-        <engine:TextElement class="form__paragraph-3 paragraph" text="Note: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
+        <engine:TextElement class="form__paragraph-3 paragraph" name="label-frame-size" /><!-- ← Set text via c# script. -->
+        <engine:TextElement class="form__paragraph-4 paragraph" text="Note: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
       </engine:VisualElement>
       <engine:Button class="button-import btn" name="button-import" text="Import" />
     </engine:VisualElement>
