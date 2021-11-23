@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:engine="UnityEngine.UIElements"
+  xmlns:editor="UnityEditor.UIElements"
+  xsi:noNamespaceSchemaLocation="UIElementsSchema/UIElements.xsd"
+>
+  <engine:VisualElement class="container">
+    <engine:VisualElement class="header">
+      <engine:TextElement class="header__hdg hdg-2" text="Prerequisites" />
+      <engine:TextElement class="header__paragraph-1 paragraph" text="To use this tool, please make sure you have your PNG file and JSON file that exported by Aseprite. And also need import them into this Unity project as asset." />
+      <engine:TextElement class="header__paragraph-2 paragraph" text="Note: This tool only support 'Array' type as JSON data type in Aseprite export sprite sheet settings. Not working correctly with 'Hash' type." />
+      <engine:TextElement class="header__paragraph-3 paragraph" text="Note: Please make sure your imported Texture type is 'Sprite (2D and UI)' and Sprite Mode is 'Multiple' to working correctly this tool." />
+      <engine:TextElement class="header__paragraph-4 paragraph" text="See wiki to learn more about this tool." />
+      <engine:TextElement class="header__paragraph-5 paragraph" text="https://github.com/2YY/aseprite-importer-for-unity/wiki" />
+    </engine:VisualElement>
+    <engine:VisualElement class="form">
+      <engine:VisualElement class="form__group">
+        <engine:TextElement class="form__hdg hdg-2" text="Import setting 1: Select Assets" />
+        <engine:TextElement class="form__paragraph-1 paragraph" text="Drag your assets that you want to import Aseprite data into below input fields to select." />
+        <editor:ObjectField class="form__field-1" name="field-texture" label="Texture File" allow-scene-object="false" />
+        <editor:ObjectField class="form__field-2" name="field-json" label="JSON File" allow-scene-object="false" />
+      </engine:VisualElement>
+      <engine:VisualElement class="form__group">
+        <engine:TextElement class="form__hdg hdg-2" text="Import setting 2: Select Pivot Coords" />
+        <engine:TextElement class="form__paragraph-2 paragraph" text="Select pivot coords that you want apply to sliced each frames in sprite sheet." />
+        <editor:Vector2IntField class="form__field-3" name="field-pivot" />
+        <engine:TextElement class="form__paragraph-3 paragraph" name="label-frame-size" /><!-- ← Set text via c# script. -->
+        <engine:TextElement class="form__paragraph-4 paragraph" text="Note: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
+      </engine:VisualElement>
+      <engine:Button class="button-import btn" name="button-import" text="Import" />
+    </engine:VisualElement>
+  </engine:VisualElement>
+
+</engine:UXML>

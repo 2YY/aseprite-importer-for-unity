@@ -1,0 +1,22 @@
+.container { padding: 12px; }
+
+.hdg-2 {
+  font-size: 18px;
+  -unity-font-style: bold;
+}
+
+.paragraph { font-size: 12px; }
+
+.btn { font-size: 14px; }
+
+.header__paragraph-1,
+.header__paragraph-4 { margin-top: 6px; }
+
+.form__group { margin-top: 24px; }
+.form__paragraph-1,
+.form__paragraph-2,
+.form__paragraph-3 { margin-top: 6px; }
+.form__field-1,
+.form__field-3 { margin-top: 6px; }
+
+.button-import { margin-top: 24px; }
