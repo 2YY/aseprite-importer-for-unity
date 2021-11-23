@@ -78,7 +78,7 @@ namespace Editor
             _fieldJson = root.Query<ObjectField>("field-json");
             _textFrameSize = root.Query<TextElement>("label-frame-size");
             _fieldPivot = root.Query<Vector2IntField>("field-pivot");
-            _buttonApply = root.Query<Button>("button-apply");
+            _buttonApply = root.Query<Button>("button-import");
         }
 
         /**

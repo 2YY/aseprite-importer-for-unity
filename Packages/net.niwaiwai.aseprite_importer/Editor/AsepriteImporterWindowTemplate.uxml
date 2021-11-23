@@ -6,31 +6,27 @@
   xsi:noNamespaceSchemaLocation="UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement class="container">
-    <engine:TextElement class="hdg-1" text="Aseprite Importer" />
-    <engine:TextElement class="Paragraph lead" text="Be more efficiency work of importing Aseprite sprite sheet." />
-
-    <engine:VisualElement class="lst">
-      <engine:TextElement class="Paragraph-sub" text="1. Auto Slicing (Based on exported JSON info from Aseprite)" />
-      <engine:TextElement class="Paragraph-sub" text="2. Bulk Applying Pivot Info to Each Slice (All you have to do is input your pivot coords to below form)" />
-      <engine:TextElement class="Paragraph-sub" text="3. Animation Settings (Generate/Update animator controller and animation clips. Each animation Clip is generated from every Aseprite tags.)" />
+    <engine:VisualElement class="header">
+      <engine:TextElement class="header__hdg hdg-2" text="Prerequisites" />
+      <engine:TextElement class="header__paragraph-1 paragraph" text="To use this tool, please make sure you have your PNG file and JSON file that exported by Aseprite. And also need import them into this Unity project as asset." />
+      <engine:TextElement class="header__paragraph-2 paragraph" text="Note: This tool only support 'Array' type as JSON data type in Aseprite export sprite sheet settings. Not working correctly with 'Hash' type." />
+      <engine:TextElement class="header__paragraph-3 paragraph" text="See wiki to learn more about this tool." />
+      <engine:TextElement class="header__paragraph-4 paragraph" text="https://github.com/2YY/aseprite-importer-for-unity/wiki" />
     </engine:VisualElement>
-
-    <engine:TextElement class="Paragraph-sub notice" text="* When export from Aseprite, please set JSON Data type to 'Array' (not 'Hash')" />
-
     <engine:VisualElement class="form">
       <engine:VisualElement class="form__group">
-        <engine:TextElement class="hdg-2" text="Select Assets You Would Like to Process" />
-        <engine:TextElement class="paragraph-sub form__notice mt0 mb6" text="*NOTE: This tool assume first tag defined in Aseprite is 'Idle' animation. Therefore, generated AnimatorController default state will be AnimationClip generated from first tag." />
-        <editor:ObjectField name="field-texture" label="Aseprite File" allow-scene-object="false" />
-        <editor:ObjectField name="field-json" label="JSON File" allow-scene-object="false" />
+        <engine:TextElement class="form__hdg hdg-2" text="Import setting 1: Select Assets" />
+        <engine:TextElement class="form__paragraph-1 paragraph" text="Drag your assets that you want to import Aseprite data into below input fields to select." />
+        <editor:ObjectField class="form__field-1" name="field-texture" label="Aseprite File" allow-scene-object="false" />
+        <editor:ObjectField class="form__field-2" name="field-json" label="JSON File" allow-scene-object="false" />
       </engine:VisualElement>
       <engine:VisualElement class="form__group">
-        <engine:TextElement class="hdg-2" text="Input Pivot Coords You Would Like to Apply Each Slice" />
-        <engine:TextElement name="label-frame-size" class="Paragraph-sub form__lead" />
-        <editor:Vector2IntField name="field-pivot" />
-        <engine:TextElement class="paragraph-sub form__notice" text="*NOTE: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
+        <engine:TextElement class="form__hdg hdg-2" text="Import setting 2: Select Pivot Coords" />
+        <engine:TextElement class="form__paragraph-2 paragraph" text="Select pivot coords that you want apply to sliced each frames in sprite sheet." />
+        <editor:Vector2IntField class="form__field-3" name="field-pivot" />
+        <engine:TextElement class="form__paragraph-3 paragraph" text="Note: Input pivot coords as TOP LEFT origin. (same as Aseprite)" />
       </engine:VisualElement>
-      <engine:Button name="button-apply" class="btn form__btn" text="Apply" />
+      <engine:Button class="button-import btn" name="button-import" text="Import" />
     </engine:VisualElement>
   </engine:VisualElement>
 
