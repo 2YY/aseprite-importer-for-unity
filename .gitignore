@@ -247,3 +247,6 @@ AsepriteImporterSpec__Anim2.anim
 AsepriteImporterSpec__Anim2.anim.meta
 AsepriteImporterSpec__Anim3.anim
 AsepriteImporterSpec__Anim3.anim.meta
+
+# CI Artifacts
+/artifacts
