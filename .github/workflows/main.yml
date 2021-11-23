@@ -1,4 +1,4 @@
-name: Auto Source Formatting
+name: Main
 
 on:
   push:
@@ -9,8 +9,7 @@ on:
     types: [ opened, synchronize, reopened ]
 
 jobs:
-  build:
-
+  source_formatting:
     runs-on: ubuntu-latest
 
     steps:

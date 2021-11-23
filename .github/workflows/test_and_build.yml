@@ -1,17 +1,16 @@
-name: Test
+name: Test and Build
 
 on:
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    types: [ opened, synchronize, reopened ]
-    
-jobs:
-  build:
+  workflow_run:
+    workflows: ["Main"]
+    branches: [develop, master]
+    types: [completed]
 
+jobs:
+  test_and_build:
+    name: Test and Build
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - name: Checkout
@@ -27,19 +26,19 @@ jobs:
         restore-keys: |
           Library-
 
-    - name: Build
-      uses: game-ci/unity-builder@v2
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
-      with:
-        targetPlatform: WebGL
-
     - name: Test
       uses: game-ci/unity-test-runner@v2
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_VERSION_2020_LICENSE }}
+      with:
+        targetPlatform: WebGL
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
