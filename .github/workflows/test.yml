@@ -51,6 +51,6 @@ jobs:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
+      with:
+        name: Build
+        path: build
